@@ -35,6 +35,18 @@ app.post('/api/movies', (req, res) => {
   })
 })
 
+// delete route goes here
+app.delete('/api/movies', (req, res) => {
+  console.log(req.body);
+  db.query(`DELETE from movie WHERE movieName = ?`, [req.body.name], (err, data) =>{
+    if(err){
+      console.log(err);
+    }else{
+      res.sendStatus(204);
+    }
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`${PORT} is connected`);
 })

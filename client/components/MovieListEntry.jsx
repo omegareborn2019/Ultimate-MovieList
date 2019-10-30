@@ -14,7 +14,7 @@ export default class MovieListEntry extends React.Component{
   }
 
   handleRemove(){
-    this.props.remove(this.props.id);
+    this.props.remove(this.props.name);
   }
 
   handleToggleStatus(){

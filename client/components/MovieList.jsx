@@ -84,14 +84,26 @@ export default class MovieList extends React.Component{
     this.setState({movies: searchResult})
   }
 
-  remove(id){
+  remove(name){
     this.setState({
       movies: this.state.movies.filter(movie =>{
-        return movie.id !== id;
+        return movie.movieName !== name;
       })
     })
     // send a request to the server to delete the data from database
-    
+    $.ajax({
+      url: "/api/movies",
+      type: "DELETE",
+      data: {"name": name},
+      statusCode: {
+        204: ()=>{
+          console.log("movie has been deleted");
+        },
+        400: ()=>{
+          console.log("deletion error");
+        }
+      }
+    })
   }
 
   // movie tabs
